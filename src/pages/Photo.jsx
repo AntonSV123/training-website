@@ -3,18 +3,18 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function Photo() {
   const images = [
-    { src: '/images/1200px-haas-in-het-grasjpg.webp', alt: 'Зайці в траві' },
-    { src: '/images/1200px-hasebeioberwerbejpg.webp', alt: 'Зайці в полі' },
-    { src: '/images/european-hare-6121jpg.webp', alt: 'Європейський заєць' },
-    { src: '/images/fFKuESpf7VTCGBNPscig.webp', alt: 'Зайці на лузі' },
-    { src: '/images/halljnes.webp', alt: 'Зайці в лісі' },
-    { src: '/images/zu6YRoYqGYVyExZ54dDT.webp', alt: 'Зайці на лузі' }
+    { src: '/images/rouge-sur-rouge.webp', alt: 'Рудий Кенгуру' },
+    { src: '/images/red-kangaroo-5.webp', alt: 'Рудий Кенгуру в хащах' },
+    { src: '/images/a-red-kangaroo-in-the-sturt-stony-desert-australia.webp', alt: 'Молодий Рудий Кенгуру' },
+    { src: '/images/1200px-macropus-rufus-red-kangaroo-restingjpg.webp', alt: 'Красивий рудий Кенгуру' },
+    { src: '/images/1200px-macropus-rufus-30751827488jpg.webp', alt: 'Руді Кенгуру' },
+    { src: '/images/1200px-macropus-rufus-30730701378jpg.webp', alt: 'Руді Кенгуру на лузі' }
   ];
 
   return (
     <main className="container px-4 py-4 flex-grow-1">
       <article>
-        <h2 className="h2 text-success mb-4">Фотогалерея зайців</h2>
+        <h2 className="h2 text-success mb-4">Фотогалерея Рудих Кенгуру</h2>
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-indicators">
             {images.map((_, index) => (
