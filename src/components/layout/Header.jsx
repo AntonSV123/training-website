@@ -17,7 +17,7 @@ function Header() {
   };
 
   return (
-    <header className="text-center bg-success text-white">
+    <header className="text-center bg-warning text-white">
       <div className="container-fluid header-container">
         <div className="logo-container">
           <Link to="/" className="text-white text-decoration-none d-flex align-items-center">

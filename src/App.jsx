@@ -15,7 +15,7 @@ function App() {
   return (
     <SearchProvider>
       <Router>
-        <div className="custom-green-theme d-flex flex-column vh-100">
+        <div className="custom-yellow-theme d-flex flex-column vh-100">
           <Header />
           <div className="flex-grow-1 overflow-auto">
             <Routes>

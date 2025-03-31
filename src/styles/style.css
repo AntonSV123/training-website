@@ -9,6 +9,7 @@
   --header-height: 60px;
   --transition-base: 0.2s ease;
   --shadow-base: 0 4px 8px rgba(212, 160, 23, 0.2);
+  --bs-nav-link-font-size: 12px;
 }
 
 /* Базові стилі */
@@ -110,6 +111,12 @@ footer {
 .nav-link.active {
   background: rgba(0, 0, 0, 0.15);
   color: #fff;
+}
+
+.alert {
+  background-color: #ffc1076b;
+  border-color: #ffc10775;
+  color: #584e30;
 }
 
 /* Контейнер для пошуку */

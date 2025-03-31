@@ -29,7 +29,7 @@ function Search() {
     <main className="container px-4 py-4">
       <div className="row">
         <div className="col-12">
-          <h2 className="h2 text-success mb-4">Результати пошуку</h2>
+          <h2 className="h2 text-warning mb-4">Результати пошуку</h2>
           {query && <p className="mb-4">Пошуковий запит: "{query}"</p>}
           
           {searchResults.length > 0 ? (
@@ -38,7 +38,7 @@ function Search() {
                 <div key={index} className="col-12 mb-4">
                   <div className="card">
                     <div className="card-body">
-                      <h3 className="h5 card-title text-success">
+                      <h3 className="h5 card-title text-warning">
                         {highlightText(result.title, query)}
                       </h3>
                       <p className="card-text text-muted">
@@ -46,7 +46,7 @@ function Search() {
                       </p>
                       <button 
                         onClick={() => navigate(result.path)}
-                        className="btn btn-success"
+                        className="btn btn-warning"
                         aria-label={`Перейти до сторінки ${result.title}`}
                       >
                         Перейти на сторінку

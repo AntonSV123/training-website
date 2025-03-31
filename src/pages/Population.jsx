@@ -18,11 +18,11 @@ function Population() {
         </aside>
 
         <article className="col-md-9">
-          <h2 className="h2 text-success mb-4">Ареал поширення Рудих Кенгуру</h2>
+          <h2 className="h2 text-warning mb-4">Ареал поширення Рудих Кенгуру</h2>
           
           <section id="continents" className="mt-4">
             <h3>
-              <button className="btn btn-success w-100 text-start" 
+              <button className="btn btn-warning w-100 text-start" 
                       type="button" 
                       data-bs-toggle="collapse" 
                       data-bs-target="#continentsList" 
@@ -41,7 +41,7 @@ function Population() {
 
           <section id="countries" className="mt-4">
             <h3>
-              <button className="btn btn-success w-100 text-start" 
+              <button className="btn btn-warning w-100 text-start" 
                       type="button" 
                       data-bs-toggle="collapse" 
                       data-bs-target="#countriesList" 
@@ -59,7 +59,7 @@ function Population() {
 
           <section id="biogeographic" className="mt-4">
             <h3>
-              <button className="btn btn-success w-100 text-start" 
+              <button className="btn btn-warning w-100 text-start" 
                       type="button" 
                       data-bs-toggle="collapse" 
                       data-bs-target="#biogeographicList" 
@@ -77,7 +77,7 @@ function Population() {
 
           <section id="biomes" className="mt-4">
             <h3>
-              <button className="btn btn-success w-100 text-start" 
+              <button className="btn btn-warning w-100 text-start" 
                       type="button" 
                       data-bs-toggle="collapse" 
                       data-bs-target="#biomesList" 
