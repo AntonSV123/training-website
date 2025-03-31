@@ -1,26 +1,26 @@
-/* Custom Yellow Theme for Red Kangaroo Website */
+/* Custom Brighter Yellow Theme for Red Kangaroo Website */
 .custom-yellow-theme {
-  background-color: #fdf5e6; /* Light warm yellow background */
-  color: #8b5e3c; /* Soft brown text for readability */
+  background-color: #ffefd5; /* Brighter warm yellow background */
+  color: #6b4226; /* Deep brown text for better contrast */
 }
 
 .custom-yellow-theme a.nav-link {
-  color: #d4a017; /* Muted golden yellow for navigation links */
+  color: #e1ad01; /* Rich golden yellow for navigation links */
   text-decoration: none;
 }
 
 .custom-yellow-theme a.nav-link:hover {
-  color: #8b5e3c; /* Darker brown on hover */
+  color: #6b4226; /* Darker brown on hover */
   text-decoration: underline;
 }
 
 .custom-yellow-theme .list-group-item {
-  background-color: #faebd7; /* Antique white for list items */
-  color: #8b5e3c;
+  background-color: #ffdab9; /* Peach puff for list items */
+  color: #6b4226;
 }
 
 .custom-yellow-theme .list-group-item:hover {
-  background-color: #f5deb3; /* Lighter wheat color on hover */
+  background-color: #ffcc80; /* Brighter wheat color on hover */
 }
 
 body {
@@ -36,10 +36,10 @@ main {
 
 footer {
   flex-shrink: 0;
-  background-color: #d4a017; /* Warm golden yellow footer */
+  background-color: #e1ad01; /* Bright golden yellow footer */
   color: white;
   padding: 10px 0;
-  border-top: 5px solid #8b5e3c;
+  border-top: 5px solid #6b4226;
 }
 
 /* Carousel Styles */
@@ -59,7 +59,7 @@ footer {
 .carousel-control-next-icon {
   width: 70px;
   height: 70px;
-  background-color: rgba(200, 180, 140, 0.9);
+  background-color: rgba(220, 180, 100, 0.9);
   border-radius: 50%;
   padding: 18px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -77,13 +77,13 @@ footer {
   margin: 0 12px !important;
   padding: 0 !important;
   background-clip: padding-box !important;
-  border: 2px solid #d4a017 !important;
+  border: 2px solid #e1ad01 !important;
   background-color: white !important;
   opacity: 0.8 !important;
 }
 
 .carousel-indicators button.active {
-  background-color: #8b5e3c !important;
+  background-color: #6b4226 !important;
   opacity: 1 !important;
 }
 
@@ -96,7 +96,7 @@ footer {
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
   transform: scale(1.1);
-  background-color: rgb(180, 150, 110);
+  background-color: rgb(200, 160, 90);
 }
 
 .carousel-indicators [data-bs-target]:hover {
@@ -104,7 +104,7 @@ footer {
 }
 
 .carousel-indicators .active {
-  background-color: #d4a017;
+  background-color: #e1ad01;
   transform: scale(1.2);
   opacity: 1;
 }
