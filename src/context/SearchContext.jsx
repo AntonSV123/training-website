@@ -15,22 +15,22 @@ const PAGES = [
   },
   {
     path: '/morphology',
-    title: 'Зовнішній вигляд зайців',
+    title: 'Зовнішній вигляд Рудих Кенгуру',
     component: Morphology
   },
   {
     path: '/nutrition',
-    title: 'Харчування зайців',
+    title: 'Харчування Рудих Кенгуру',
     component: Nutrition
   },
   {
     path: '/population',
-    title: 'Ареал зайців',
+    title: 'Ареал Рудих Кенгуру',
     component: Population
   },
   {
     path: '/photo',
-    title: 'Фотографії зайців',
+    title: 'Фотографії Рудих Кенгуру',
     component: Photo
   }
 ];
