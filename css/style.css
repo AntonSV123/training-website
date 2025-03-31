@@ -1,26 +1,26 @@
-/* Custom Green Theme for Rabbit Website */
-.custom-green-theme {
-  background-color: #d4edda; /* Light green background */
-  color: #155724; /* Dark green text */
+/* Custom Yellow Theme for Red Kangaroo Website */
+.custom-yellow-theme {
+  background-color: #fdf5e6; /* Light warm yellow background */
+  color: #8b5e3c; /* Soft brown text for readability */
 }
- 
-.custom-green-theme a.nav-link {
-  color: #28a745; /* Bright green for navigation links */
+
+.custom-yellow-theme a.nav-link {
+  color: #d4a017; /* Muted golden yellow for navigation links */
   text-decoration: none;
 }
- 
-.custom-green-theme a.nav-link:hover {
-  color: #155724; /* Darker green on hover */
+
+.custom-yellow-theme a.nav-link:hover {
+  color: #8b5e3c; /* Darker brown on hover */
   text-decoration: underline;
 }
- 
-.custom-green-theme .list-group-item {
-  background-color: #c3e6cb; /* Pale green for list items */
-  color: #155724;
+
+.custom-yellow-theme .list-group-item {
+  background-color: #faebd7; /* Antique white for list items */
+  color: #8b5e3c;
 }
- 
-.custom-green-theme .list-group-item:hover {
-  background-color: #b1dfbb; /* Slightly darker green on hover */
+
+.custom-yellow-theme .list-group-item:hover {
+  background-color: #f5deb3; /* Lighter wheat color on hover */
 }
 
 body {
@@ -36,10 +36,10 @@ main {
 
 footer {
   flex-shrink: 0;
-  background-color: #28a745; /* Green footer */
+  background-color: #d4a017; /* Warm golden yellow footer */
   color: white;
   padding: 10px 0;
-  border-top: 5px solid #155724;
+  border-top: 5px solid #8b5e3c;
 }
 
 /* Carousel Styles */
@@ -59,7 +59,7 @@ footer {
 .carousel-control-next-icon {
   width: 70px;
   height: 70px;
-  background-color: rgba(200, 200, 200, 0.9);
+  background-color: rgba(200, 180, 140, 0.9);
   border-radius: 50%;
   padding: 18px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -77,13 +77,13 @@ footer {
   margin: 0 12px !important;
   padding: 0 !important;
   background-clip: padding-box !important;
-  border: 2px solid #28a745 !important;
+  border: 2px solid #d4a017 !important;
   background-color: white !important;
   opacity: 0.8 !important;
 }
 
 .carousel-indicators button.active {
-  background-color: #155724 !important;
+  background-color: #8b5e3c !important;
   opacity: 1 !important;
 }
 
@@ -96,7 +96,7 @@ footer {
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
   transform: scale(1.1);
-  background-color: rgb(180, 180, 180);
+  background-color: rgb(180, 150, 110);
 }
 
 .carousel-indicators [data-bs-target]:hover {
@@ -104,7 +104,7 @@ footer {
 }
 
 .carousel-indicators .active {
-  background-color: #28a745;
+  background-color: #d4a017;
   transform: scale(1.2);
   opacity: 1;
 }
