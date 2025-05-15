@@ -63,12 +63,13 @@ describe('API вебдодатку сайту про Кенгуру', () => {
         it('має створити запис про нового Кенгуру', done => {
             // Тестові дані Кенгуру
             const kangaroo = {
-                name: 'Вухань',
+                name: 'Стрибун',
                 age: 2,
                 height: 30,
                 weight: 2.5,
                 gender: 'male' as const,
-                description: 'Сірий Кенгуру',
+                description: 'Гарний Кенгуру',
+                pouchSize: '3 см3',
             };
 
             // Виконуємо POST-запит для створення запису про Кенгуру
@@ -88,6 +89,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                     expect(res.body).to.have.property('gender', kangaroo.gender);
                     expect(res.body).to.have.property('description', kangaroo.description);
                     expect(res.body).to.have.property('dateAdded');
+                    expect(res.body).to.have.property('pouchSize', kangaroo.pouchSize);
                     expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
                     done();
                 });
@@ -99,12 +101,13 @@ describe('API вебдодатку сайту про Кенгуру', () => {
         it('має отримати всіх Кенгуру', async () => {
             // Створюємо тестовий запис Кенгуру
             const testKangaroo = new Kangaroo({
-                name: 'Білан',
+                name: 'Бігун',
                 age: 3,
                 height: 35,
                 weight: 3.2,
                 gender: 'male',
-                description: 'Білий Кенгуру',
+                description: 'Великий Кенгуру',
+                pouchSize: '3 см3',
             });
             await testKangaroo.save();
 
@@ -113,10 +116,11 @@ describe('API вебдодатку сайту про Кенгуру', () => {
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('array');
             expect(res.body.length).to.equal(1);
-            expect(res.body[0]).to.have.property('name', 'Білан');
+            expect(res.body[0]).to.have.property('name', 'Бігун');
             expect(res.body[0]).to.have.property('gender', 'male');
-            expect(res.body[0]).to.have.property('description', 'Білий Кенгуру');
+            expect(res.body[0]).to.have.property('description', 'Великий Кенгуру');
             expect(res.body[0]).to.have.property('dateAdded');
+            expect(res.body[0]).to.have.property('pouchSize', '3 см3');
             expect(new Date(res.body[0].dateAdded)).to.be.instanceOf(Date);
         });
     });
@@ -126,24 +130,26 @@ describe('API вебдодатку сайту про Кенгуру', () => {
         it('має отримати конкретного Кенгуру за id', async () => {
             // Створюємо запис тестового Кенгуру
             const testKangaroo = new Kangaroo({
-                name: 'Косий',
+                name: 'Кенгуру',
                 age: 1,
                 height: 25,
                 weight: 1.8,
                 gender: 'male',
                 description: 'Коричневий Кенгуру',
+                pouchSize: '3 см3',
             });
             const savedKangaroo = await testKangaroo.save();
 
             // Виконуємо GET-запит для отримання запису Кенгуру за ID
             const res = await chai.request(app).get(`/api/kangaroos/${String(savedKangaroo._id)}`);
             expect(res).to.have.status(200);
-            expect(res.body).to.have.property('name', 'Косий');
+            expect(res.body).to.have.property('name', 'Кенгуру');
             expect(res.body).to.have.property('age', 1);
             expect(res.body).to.have.property('height', 25);
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'male');
             expect(res.body).to.have.property('description', 'Коричневий Кенгуру');
+             expect(res.body).to.have.property('pouchSize', '3 см3');
         });
 
         it('має повернути 404 для неіснуючого Кенгуру', async () => {
@@ -164,6 +170,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                pouchSize: '3 см3',
             });
             const savedKangaroot = await testKangaroo.save();
 
@@ -175,6 +182,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 weight: 2.5,
                 gender: 'female',
                 description: 'Оновлений опис',
+                pouchSize: '5 см3',
             };
 
             // Виконуємо PUT-запит для повного оновлення запису про Кенгуру
@@ -192,6 +200,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
             expect(res.body).to.have.property('gender', 'female');
             expect(res.body).to.have.property('description', 'Оновлений опис');
             expect(res.body).to.have.property('dateAdded');
+            expect(res.body).to.have.property('pouchSize', '5 см3');
             expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
         });
 
@@ -204,6 +213,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                pouchSize: '3 см3',
             });
             const savedKangaroo = await testKangaroo.save();
 
@@ -214,6 +224,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 // height і weight відсутні
                 gender: 'female',
                 description: 'Оновлений опис',
+                pouchSize: '3 см3',
             };
 
             // Виконуємо PUT-запит з неповними даними
@@ -230,6 +241,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
             expect(unchangedKangaroo).to.have.property('name', 'Оригінальний');
             expect(unchangedKangaroo).to.have.property('height', 25);
             expect(unchangedKangaroo).to.have.property('weight', 1.8);
+            expect(unchangedKangaroo).to.have.property('pouchSize', '3 см3');
         });
     });
 
@@ -244,6 +256,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                pouchSize: '3 см3',
             });
             const savedKangaroo = await testKangaroo.save();
 
@@ -252,6 +265,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 name: 'Частково оновлений',
                 age: 3,
                 description: 'Оновлений опис',
+                pouchSize: '5 см3',
             };
 
             // Виконуємо PATCH-запит
@@ -269,6 +283,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
             expect(res.body).to.have.property('gender', 'male');
             expect(res.body).to.have.property('description', 'Оновлений опис');
             expect(res.body).to.have.property('dateAdded');
+            expect(res.body).to.have.property('pouchSize', '5 см3');
             expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
         });
 
@@ -281,6 +296,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 weight: 1.8,
                 gender: 'male',
                 description: 'Початковий опис',
+                pouchSize: '3 см3',
             });
             const savedKangaroo = await testKangaroo.save();
 
@@ -291,6 +307,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
                 // height і weight навмисно відсутні
                 gender: 'female',
                 description: 'Оновлений опис',
+                pouchSize: '3 см3',
             };
 
             // Виконуємо PATCH-запит
@@ -308,6 +325,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'female');
             expect(res.body).to.have.property('description', 'Оновлений опис');
+             expect(res.body).to.have.property('pouchSize', '3 см3');
         });
     });
 
@@ -342,12 +360,13 @@ describe('API вебдодатку сайту про Кенгуру', () => {
         it('має видалити запис про Кенгуру', async () => {
             // Створюємо тестового Кенгуру
             const testKangaroo = new Kangaroo({
-                name: 'Стрибунець',
+                name: 'Жінка Кенгуру',
                 age: 2,
                 height: 28,
                 weight: 2.1,
                 gender: 'female',
-                description: 'Чорний Кенгуру',
+                description: 'Миле Кенгуру',
+                pouchSize: '3 см3',
             });
             const savedKangaroo = await testKangaroo.save();
 

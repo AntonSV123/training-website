@@ -208,6 +208,10 @@ export const swaggerSpec = {
                         type: 'string',
                         description: "Опис Кенгуру (необов'язкове поле)",
                     },
+                    pouchSize: {
+                        type: 'string',
+                        pouchSize: 'Pозмір сумки для носіння дитинча, см3.',
+                    },
                 },
             },
         },

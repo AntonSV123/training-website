@@ -9,6 +9,7 @@ interface IKangaroo {
     gender: 'male' | 'female'; // Стать Кенгуру: 'male' - самець, 'female' - самка
     description?: string; // Опис Кенгуру (необов'язкове поле)
     dateAdded: Date; // Дата додавання запису до бази даних
+    pouchSize: string; //розмір сумки для носіння дитинча, см3.
 }
 
 // Схема MongoDB для моделі "Кенгуру"
@@ -38,6 +39,10 @@ const kangarooSchema = new Schema<IKangaroo>({
     dateAdded: {
         type: Date,
         default: Date.now, // Значення за замовчуванням - поточна дата і час
+    },
+    pouchSize: {
+        type: String,
+        required: true, // Поле є обов'язковим
     },
 });
 
