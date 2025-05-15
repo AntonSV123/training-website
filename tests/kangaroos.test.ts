@@ -149,7 +149,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'male');
             expect(res.body).to.have.property('description', 'Коричневий Кенгуру');
-             expect(res.body).to.have.property('pouchSize', '3 см3');
+            expect(res.body).to.have.property('pouchSize', '3 см3');
         });
 
         it('має повернути 404 для неіснуючого Кенгуру', async () => {
@@ -325,7 +325,7 @@ describe('API вебдодатку сайту про Кенгуру', () => {
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'female');
             expect(res.body).to.have.property('description', 'Оновлений опис');
-             expect(res.body).to.have.property('pouchSize', '3 см3');
+            expect(res.body).to.have.property('pouchSize', '3 см3');
         });
     });
 
