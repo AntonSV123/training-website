@@ -15,7 +15,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
   const [showDeleteModal, setShowDeleteModal] = useState(false); // Стан для модального вікна видалення
   const [kangarooToDelete, setKangarooToDelete] = useState(null); // Ідентифікатор Кенгуру для видалення
   const [currentKangaroo, setCurrentKangaroo] = useState(null);
-  const [toastMessage, setToastMessage] = useState({ text: '', type: 'success' });
+  const [toastMessage, setToastMessage] = useState({ text: '', type: 'warning' });
   
   // Посилання до елемента спливаючих сповіщень toast
   const toastRef = useRef(null);
@@ -191,9 +191,9 @@ function Rehabilitation() {  // Стан для зберігання даних 
   return (
     <main className="container px-4 py-4">
       <header className="d-flex justify-content-between align-items-center mb-4">
-        <h1 className="h2 text-success">Реабілітація Кенгуру</h1>
+        <h1 className="h2 text-warning">Реабілітація Кенгуру</h1>
         <button 
-          className="btn btn-success" 
+          className="btn btn-warning" 
           onClick={handleShowAddModal}
           disabled={loading}
         >
@@ -235,7 +235,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
       {/* Таблиця Кенгуру */}
       {loading && !error && (
         <div className="text-center my-5">
-          <div className="spinner-border text-success" role="status">
+          <div className="spinner-border text-warning" role="status">
             <span className="visually-hidden">Завантаження...</span>
           </div>
           <p className="mt-2">Завантаження записів Кенгуру...</p>
@@ -433,7 +433,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                   <button type="button" className="btn btn-secondary me-2" onClick={() => setShowAddModal(false)}>
                     Скасувати
                   </button>
-                  <button type="submit" className="btn btn-success" disabled={loading}>
+                  <button type="submit" className="btn btn-warning" disabled={loading}>
                     {loading ? (
                       <>
                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
