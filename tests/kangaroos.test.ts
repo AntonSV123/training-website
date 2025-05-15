@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../src/server';
-import { Rabbit } from '../src/models/rabbit';
+import { Kangaroo } from '../src/models/kangaroo';
 import { container } from '../src/config/container';
 import { TYPES } from '../src/types/types';
 import { IDatabase } from '../src/interfaces/IDatabase';
@@ -12,12 +12,12 @@ import mongoose from 'mongoose';
 const { expect } = chai;
 chai.use(chaiHttp);
 
-// Тести API вебдодатку сайту про зайців
-describe('API вебдодатку сайту про зайців', () => {
+// Тести API вебдодатку сайту про Кенгуру
+describe('API вебдодатку сайту про Кенгуру', () => {
     // Отримуємо екземпляр бази даних з контейнера
     const database = container.get<IDatabase>(TYPES.IDatabase);
     // Створюємо спеціальний URI для тестової бази даних
-    const testMongoURI = MONGODB_URI.replace(/\/[^/]*$/, '/rabbits-test');
+    const testMongoURI = MONGODB_URI.replace(/\/[^/]*$/, '/kangaroos-test');
 
     // Перед запуском тестів підключаємось до тестової бази даних
     before(async () => {
@@ -30,7 +30,7 @@ describe('API вебдодатку сайту про зайців', () => {
         try {
             // Видаляємо тестову базу даних
             await mongoose.connection.db.dropDatabase();
-            console.log('Тестову базу даних "rabbits-test" успішно видалено');
+            console.log('Тестову базу даних "kangaroos-test" успішно видалено');
         } catch (error) {
             // Обробляємо можливі помилки
             console.log(
@@ -53,40 +53,40 @@ describe('API вебдодатку сайту про зайців', () => {
         });
     });
 
-    // Перед кожним тестом очищуємо колекцію зайців
+    // Перед кожним тестом очищуємо колекцію Кенгуру
     beforeEach(async () => {
-        await Rabbit.deleteMany({});
+        await Kangaroo.deleteMany({});
     });
 
-    // Тести для створення запису про нового зайця (POST-запит)
-    describe('POST /api/rabbits', () => {
-        it('має створити запис про нового зайця', done => {
-            // Тестові дані зайця
-            const rabbit = {
+    // Тести для створення запису про нового Кенгуру (POST-запит)
+    describe('POST /api/kangaroos', () => {
+        it('має створити запис про нового Кенгуру', done => {
+            // Тестові дані Кенгуру
+            const kangaroo = {
                 name: 'Вухань',
                 age: 2,
                 height: 30,
                 weight: 2.5,
                 gender: 'male' as const,
-                description: 'Сірий заєць',
+                description: 'Сірий Кенгуру',
             };
 
-            // Виконуємо POST-запит для створення запису про зайця
+            // Виконуємо POST-запит для створення запису про Кенгуру
             chai.request(app)
-                .post('/api/rabbits')
-                .send(rabbit)
+                .post('/api/kangaroos')
+                .send(kangaroo)
                 .end((err, res) => {
                     if (err !== null && err !== undefined) {
                         return done(err);
                     }
                     // Перевіряємо відповідь
                     expect(res).to.have.status(201);
-                    expect(res.body).to.have.property('name', rabbit.name);
-                    expect(res.body).to.have.property('age', rabbit.age);
-                    expect(res.body).to.have.property('height', rabbit.height);
-                    expect(res.body).to.have.property('weight', rabbit.weight);
-                    expect(res.body).to.have.property('gender', rabbit.gender);
-                    expect(res.body).to.have.property('description', rabbit.description);
+                    expect(res.body).to.have.property('name', kangaroo.name);
+                    expect(res.body).to.have.property('age', kangaroo.age);
+                    expect(res.body).to.have.property('height', kangaroo.height);
+                    expect(res.body).to.have.property('weight', kangaroo.weight);
+                    expect(res.body).to.have.property('gender', kangaroo.gender);
+                    expect(res.body).to.have.property('description', kangaroo.description);
                     expect(res.body).to.have.property('dateAdded');
                     expect(new Date(res.body.dateAdded)).to.be.instanceOf(Date);
                     done();
@@ -94,70 +94,70 @@ describe('API вебдодатку сайту про зайців', () => {
         });
     });
 
-    // Тести для отримання всіх записів зайців (GET-запит)
-    describe('GET /api/rabbits', () => {
-        it('має отримати всіх зайців', async () => {
-            // Створюємо тестовий запис зайця
-            const testRabbit = new Rabbit({
+    // Тести для отримання всіх записів Кенгуру (GET-запит)
+    describe('GET /api/kangaroos', () => {
+        it('має отримати всіх Кенгуру', async () => {
+            // Створюємо тестовий запис Кенгуру
+            const testKangaroo = new Kangaroo({
                 name: 'Білан',
                 age: 3,
                 height: 35,
                 weight: 3.2,
                 gender: 'male',
-                description: 'Білий заєць',
+                description: 'Білий Кенгуру',
             });
-            await testRabbit.save();
+            await testKangaroo.save();
 
-            // Виконуємо GET-запит для отримання всіх записів зайців
-            const res = await chai.request(app).get('/api/rabbits');
+            // Виконуємо GET-запит для отримання всіх записів Кенгуру
+            const res = await chai.request(app).get('/api/kangaroos');
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('array');
             expect(res.body.length).to.equal(1);
             expect(res.body[0]).to.have.property('name', 'Білан');
             expect(res.body[0]).to.have.property('gender', 'male');
-            expect(res.body[0]).to.have.property('description', 'Білий заєць');
+            expect(res.body[0]).to.have.property('description', 'Білий Кенгуру');
             expect(res.body[0]).to.have.property('dateAdded');
             expect(new Date(res.body[0].dateAdded)).to.be.instanceOf(Date);
         });
     });
 
-    // Тести для отримання запису конкретного зайця за ID (GET-запит)
-    describe('GET /api/rabbits/:id', () => {
-        it('має отримати конкретного зайця за id', async () => {
-            // Створюємо запис тестового зайця
-            const testRabbit = new Rabbit({
+    // Тести для отримання запису конкретного Кенгуру за ID (GET-запит)
+    describe('GET /api/kangaroos/:id', () => {
+        it('має отримати конкретного Кенгуру за id', async () => {
+            // Створюємо запис тестового Кенгуру
+            const testKangaroo = new Kangaroo({
                 name: 'Косий',
                 age: 1,
                 height: 25,
                 weight: 1.8,
                 gender: 'male',
-                description: 'Коричневий заєць',
+                description: 'Коричневий Кенгуру',
             });
-            const savedRabbit = await testRabbit.save();
+            const savedKangaroo = await testKangaroo.save();
 
-            // Виконуємо GET-запит для отримання запису зайця за ID
-            const res = await chai.request(app).get(`/api/rabbits/${String(savedRabbit._id)}`);
+            // Виконуємо GET-запит для отримання запису Кенгуру за ID
+            const res = await chai.request(app).get(`/api/kangaroos/${String(savedKangaroo._id)}`);
             expect(res).to.have.status(200);
             expect(res.body).to.have.property('name', 'Косий');
             expect(res.body).to.have.property('age', 1);
             expect(res.body).to.have.property('height', 25);
             expect(res.body).to.have.property('weight', 1.8);
             expect(res.body).to.have.property('gender', 'male');
-            expect(res.body).to.have.property('description', 'Коричневий заєць');
+            expect(res.body).to.have.property('description', 'Коричневий Кенгуру');
         });
 
-        it('має повернути 404 для неіснуючого зайця', async () => {
-            // Виконуємо GET-запит для неіснуючого ID зайця
-            const res = await chai.request(app).get('/api/rabbits/654321654321654321654321');
+        it('має повернути 404 для неіснуючого Кенгуру', async () => {
+            // Виконуємо GET-запит для неіснуючого ID Кенгуру
+            const res = await chai.request(app).get('/api/kangaroos/654321654321654321654321');
             expect(res).to.have.status(404);
         });
     });
 
-    // Тести для повного оновлення запису про зайця (PUT-запит)
-    describe('PUT /api/rabbits/:id', () => {
-        it('має повністю оновити запис про зайця', async () => {
-            // Створюємо тестового зайця
-            const testRabbit = new Rabbit({
+    // Тести для повного оновлення запису про Кенгуру (PUT-запит)
+    describe('PUT /api/kangaroos/:id', () => {
+        it('має повністю оновити запис про Кенгуру', async () => {
+            // Створюємо тестового Кенгуру
+            const testKangaroo = new Kangaroo({
                 name: 'Оригінальний',
                 age: 1,
                 height: 25,
@@ -165,9 +165,9 @@ describe('API вебдодатку сайту про зайців', () => {
                 gender: 'male',
                 description: 'Початковий опис',
             });
-            const savedRabbit = await testRabbit.save();
+            const savedKangaroot = await testKangaroo.save();
 
-            // Дані для оновлення зайця
+            // Дані для оновлення Кенгуру
             const updatedData = {
                 name: 'Оновлений',
                 age: 2,
@@ -177,10 +177,10 @@ describe('API вебдодатку сайту про зайців', () => {
                 description: 'Оновлений опис',
             };
 
-            // Виконуємо PUT-запит для повного оновлення запису про зайця
+            // Виконуємо PUT-запит для повного оновлення запису про Кенгуру
             const res = await chai
                 .request(app)
-                .put(`/api/rabbits/${String(savedRabbit._id)}`)
+                .put(`/api/kangaroos/${String(savedKangaroot._id)}`)
                 .send(updatedData);
 
             // Перевіряємо результат
@@ -196,8 +196,8 @@ describe('API вебдодатку сайту про зайців', () => {
         });
 
         it("має завершитися невдачею при відсутності обов'язкових полів", async () => {
-            // Створюємо тестового зайця
-            const testRabbit = new Rabbit({
+            // Створюємо тестового Кенгуру
+            const testKangaroo = new Kangaroo({
                 name: 'Оригінальний',
                 age: 1,
                 height: 25,
@@ -205,7 +205,7 @@ describe('API вебдодатку сайту про зайців', () => {
                 gender: 'male',
                 description: 'Початковий опис',
             });
-            const savedRabbit = await testRabbit.save();
+            const savedKangaroo = await testKangaroo.save();
 
             // Неповні дані для оновлення (відсутні обов'язкові поля)
             const incompleteData = {
@@ -219,25 +219,25 @@ describe('API вебдодатку сайту про зайців', () => {
             // Виконуємо PUT-запит з неповними даними
             const res = await chai
                 .request(app)
-                .put(`/api/rabbits/${String(savedRabbit._id)}`)
+                .put(`/api/kangaroos/${String(savedKangaroo._id)}`)
                 .send(incompleteData);
 
             // Перевіряємо, що запит завершився з помилкою
             expect(res).to.have.status(400);
 
-            // Перевіряємо, що заєць не змінився
-            const unchangedRabbit = await Rabbit.findById(savedRabbit._id);
-            expect(unchangedRabbit).to.have.property('name', 'Оригінальний');
-            expect(unchangedRabbit).to.have.property('height', 25);
-            expect(unchangedRabbit).to.have.property('weight', 1.8);
+            // Перевіряємо, що Кенгуру не змінився
+            const unchangedKangaroo = await Kangaroo.findById(savedKangaroo._id);
+            expect(unchangedKangaroo).to.have.property('name', 'Оригінальний');
+            expect(unchangedKangaroo).to.have.property('height', 25);
+            expect(unchangedKangaroo).to.have.property('weight', 1.8);
         });
     });
 
-    // Тести для часткового оновлення запису про зайця (PATCH-запит)
-    describe('PATCH /api/rabbits/:id', () => {
-        it('має частково оновити запис про зайця', async () => {
-            // Створюємо тестового зайця
-            const testRabbit = new Rabbit({
+    // Тести для часткового оновлення запису про Кенгуру (PATCH-запит)
+    describe('PATCH /api/kangaroos/:id', () => {
+        it('має частково оновити запис про Кенгуру', async () => {
+            // Створюємо тестового Кенгуру
+            const testKangaroo = new Kangaroo({
                 name: 'Оригінальний',
                 age: 1,
                 height: 25,
@@ -245,7 +245,7 @@ describe('API вебдодатку сайту про зайців', () => {
                 gender: 'male',
                 description: 'Початковий опис',
             });
-            const savedRabbit = await testRabbit.save();
+            const savedKangaroo = await testKangaroo.save();
 
             // Дані для часткового оновлення
             const patchData = {
@@ -257,7 +257,7 @@ describe('API вебдодатку сайту про зайців', () => {
             // Виконуємо PATCH-запит
             const res = await chai
                 .request(app)
-                .patch(`/api/rabbits/${String(savedRabbit._id)}`)
+                .patch(`/api/kangaroos/${String(savedKangaroo._id)}`)
                 .send(patchData);
 
             // Перевіряємо результат
@@ -273,8 +273,8 @@ describe('API вебдодатку сайту про зайців', () => {
         });
 
         it('демонструє різницю між PATCH і PUT з частковими оновленнями', async () => {
-            // Створюємо тестового зайця
-            const testRabbit = new Rabbit({
+            // Створюємо тестового Кенгуру
+            const testKangaroo = new Kangaroo({
                 name: 'Оригінальний',
                 age: 1,
                 height: 25,
@@ -282,7 +282,7 @@ describe('API вебдодатку сайту про зайців', () => {
                 gender: 'male',
                 description: 'Початковий опис',
             });
-            const savedRabbit = await testRabbit.save();
+            const savedKangaroo = await testKangaroo.save();
 
             // Ті самі неповні дані, що не спрацювали з PUT, мають працювати з PATCH
             const partialData = {
@@ -296,7 +296,7 @@ describe('API вебдодатку сайту про зайців', () => {
             // Виконуємо PATCH-запит
             const res = await chai
                 .request(app)
-                .patch(`/api/rabbits/${String(savedRabbit._id)}`)
+                .patch(`/api/kangaroos/${String(savedKangaroo._id)}`)
                 .send(partialData);
 
             // Перевіряємо результат
@@ -312,12 +312,12 @@ describe('API вебдодатку сайту про зайців', () => {
     });
 
     // Тести для отримання метаданих (HEAD-запит)
-    describe('HEAD /api/rabbits', () => {
+    describe('HEAD /api/kangaroos', () => {
         it('має повернути заголовки метаданих', async () => {
             // Виконуємо HEAD-запит
             const res = await chai
                 .request(app)
-                .head('/api/rabbits')
+                .head('/api/kangaroos')
                 .set('Accept', 'application/json');
 
             // Перевіряємо статус відповіді
@@ -337,28 +337,30 @@ describe('API вебдодатку сайту про зайців', () => {
         });
     });
 
-    // Тести для видалення запису зайця (DELETE-запит)
-    describe('DELETE /api/rabbits/:id', () => {
-        it('має видалити запис про зайця', async () => {
-            // Створюємо тестового зайця
-            const testRabbit = new Rabbit({
+    // Тести для видалення запису Кенгуру (DELETE-запит)
+    describe('DELETE /api/kangaroos/:id', () => {
+        it('має видалити запис про Кенгуру', async () => {
+            // Створюємо тестового Кенгуру
+            const testKangaroo = new Kangaroo({
                 name: 'Стрибунець',
                 age: 2,
                 height: 28,
                 weight: 2.1,
                 gender: 'female',
-                description: 'Чорний заєць',
+                description: 'Чорний Кенгуру',
             });
-            const savedRabbit = await testRabbit.save();
+            const savedKangaroo = await testKangaroo.save();
 
             // Виконуємо DELETE-запит
-            const res = await chai.request(app).delete(`/api/rabbits/${String(savedRabbit._id)}`);
+            const res = await chai
+                .request(app)
+                .delete(`/api/kangaroos/${String(savedKangaroo._id)}`);
             expect(res).to.have.status(200);
-            expect(res.body).to.have.property('message', 'Запис про зайця видалено');
+            expect(res.body).to.have.property('message', 'Запис про Кенгуру видалено');
 
-            // Перевіряємо, що запис про зайця дійсно видалено з бази
-            const findRabbit = await Rabbit.findById(savedRabbit._id);
-            expect(findRabbit).to.be.null;
+            // Перевіряємо, що запис про Кенгуру дійсно видалено з бази
+            const findKangaroo = await Kangaroo.findById(savedKangaroo._id);
+            expect(findKangaroo).to.be.null;
         });
     });
 });

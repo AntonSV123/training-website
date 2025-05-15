@@ -1,5 +1,5 @@
 {
-  "name": "rabbit-server-application",
+  "name": "kangaroo-server-application",
   "version": "1.0.0",
   "description": "Серверний додаток для сайту про зайців",
   "main": "dist/src/server.js",
