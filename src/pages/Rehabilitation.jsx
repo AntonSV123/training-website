@@ -137,7 +137,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
     try {
       setLoading(true);
       const response = await axios.put(`${API_BASE_URL}/kangaroos/${currentKangaroo._id}`, formData);
-      const updatedKangaroot = response.data;
+      const updatedKangaroo = response.data;
       setKangaroos(kangaroos.map(kangaroo => 
         kangaroo._id === currentKangaroo._id ? updatedKangaroo : kangaroo
       ));
