@@ -26,7 +26,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
     height: '',
     weight: '',
     gender: 'male',
-    description: ''
+    description: '',
+    pouchSize: ''
   });
 
   // При рендерингу компонента, отримуємо всіх Кенгуру
@@ -85,7 +86,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
       height: '',
       weight: '',
       gender: 'male',
-      description: ''
+      description: '',
+      pouchSize: ''
     });
     setShowAddModal(true);
   };
@@ -99,7 +101,8 @@ function Rehabilitation() {  // Стан для зберігання даних 
       height: kangaroo.height,
       weight: kangaroo.weight,
       gender: kangaroo.gender,
-      description: kangaroo.description || ''
+      description: kangaroo.description || '',
+      pouchSize: kangaroo.pouchSize
     });
     setShowEditModal(true);
   };
@@ -256,6 +259,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                 <th>Вага (кг)</th>
                 <th>Стать</th>
                 <th>Опис</th>
+                <th>Pозмір сумки (см3)</th>
                 <th>Дата додавання</th>
                 <th>Дії</th>
               </tr>
@@ -269,6 +273,7 @@ function Rehabilitation() {  // Стан для зберігання даних 
                   <td>{kangaroo.weight}</td>
                   <td>{kangaroo.gender === 'male' ? 'Самець' : 'Самиця'}</td>
                   <td>{kangaroo.description}</td>
+                  <td>{kangaroo.pouchSize}</td>
                   <td>{kangaroo.dateAdded ? formatDate(kangaroo.dateAdded) : 'Н/Д'}</td>
                   <td>
                     <button
@@ -409,6 +414,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
                       ></textarea>
                     </div>
                   </div>
+                  <div className="row mb-3">
+                    <label htmlFor="pouchSize" className="col-sm-3 col-form-label">Розмір сумки (см3)</label>
+                    <div className="col-sm-9">
+                      <input 
+                        type="string" 
+                        className="form-control" 
+                        id="pouchSize" 
+                        name="pouchSize" 
+                        value={formData.pouchSize} 
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
                 </fieldset>
                 <footer className="d-flex justify-content-end">
                   <button type="button" className="btn btn-secondary me-2" onClick={() => setShowAddModal(false)}>
@@ -547,6 +566,20 @@ function Rehabilitation() {  // Стан для зберігання даних 
                         onChange={handleInputChange}
                         rows={3}
                       ></textarea>
+                    </div>
+                  </div>
+                  <div className="row mb-3">
+                    <label htmlFor="pouchSize" className="col-sm-3 col-form-label">Розмір сумки (см3)</label>
+                    <div className="col-sm-9">
+                      <input 
+                        type="string" 
+                        className="form-control" 
+                        id="pouchSize" 
+                        name="pouchSize" 
+                        value={formData.pouchSize} 
+                        onChange={handleInputChange}
+                        required
+                      />
                     </div>
                   </div>
                 </fieldset>                
